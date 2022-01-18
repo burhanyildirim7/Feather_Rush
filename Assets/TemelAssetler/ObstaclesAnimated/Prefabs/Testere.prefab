@@ -392,11 +392,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: e72ee0deaca5ce942b0109e48b8b6d69, type: 2}
     - target: {fileID: 961299489642591549, guid: 80c3018eb6377f74ea30998f40c1b301, type: 3}
       propertyPath: m_TagString
-      value: DegersizEsya
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1410324318715345673, guid: 80c3018eb6377f74ea30998f40c1b301, type: 3}
       propertyPath: m_TagString
-      value: DegersizEsya
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3503860344463388855, guid: 80c3018eb6377f74ea30998f40c1b301, type: 3}
       propertyPath: m_RootOrder

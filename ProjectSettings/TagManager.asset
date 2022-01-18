@@ -8,6 +8,14 @@ TagManager:
   - LevelController
   - UIController
   - Elmas
+  - DegersizEsya
+  - ENGEL
+  - Hand
+  - FeatherCollectable
+  - BlueDoor
+  - GreenDoor
+  - RedDoor
+  - YellowDoor
   layers:
   - Default
   - TransparentFX
