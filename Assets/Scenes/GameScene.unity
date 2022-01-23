@@ -181,7 +181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326513068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -956,7 +956,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659259}
-  m_LocalPosition: {x: 0, y: 6, z: -7}
+  m_LocalPosition: {x: 0, y: 7, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1049,7 +1049,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443049507}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1135,7 +1135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swerveSpeed: 0.5
   _getPoint: {fileID: 326513068}
-  _radius: 4
+  _radius: 3
 --- !u!114 &1443049513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5172,6 +5172,10 @@ PrefabInstance:
     - target: {fileID: 7353437938456613895, guid: 86cf390abdf12436dbab72ceaa848202, type: 3}
       propertyPath: m_Name
       value: RuyaKapani
+      objectReference: {fileID: 0}
+    - target: {fileID: 7353437938456613895, guid: 86cf390abdf12436dbab72ceaa848202, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7874394916802399933, guid: 86cf390abdf12436dbab72ceaa848202, type: 3}
       propertyPath: m_RootOrder

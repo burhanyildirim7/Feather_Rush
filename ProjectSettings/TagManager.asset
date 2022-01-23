@@ -16,6 +16,9 @@ TagManager:
   - GreenDoor
   - RedDoor
   - YellowDoor
+  - FinishCizgisi
+  - FinishFeatherNoktalari
+  - FinishTakipObjesi
   layers:
   - Default
   - TransparentFX

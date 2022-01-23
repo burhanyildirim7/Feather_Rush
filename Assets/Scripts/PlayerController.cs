@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
@@ -61,17 +62,34 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.tag == "DegersizEsya")
         {
-            if (_featherParent.transform.childCount > 0)
+            if (GameController._oyunAktif == true)
             {
-                _featherParent.transform.GetChild(_featherParent.transform.childCount - 1).parent = null;
-                _arkaDuvar.SetActive(false);
-                Invoke("DuvarAc", 0.5f);
-                //_featherParent.transform.GetChild(_featherParent.transform.childCount - 1).gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                if (_featherParent.transform.childCount > 0)
+                {
+                    _featherParent.transform.GetChild(_featherParent.transform.childCount - 1).parent = null;
+                    _arkaDuvar.SetActive(false);
+                    Invoke("DuvarAc", 0.5f);
+                    //_featherParent.transform.GetChild(_featherParent.transform.childCount - 1).gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                }
+                else
+                {
+                    GameController._oyunAktif = false;
+                    Invoke("LoseScreenAc", 1f);
+                }
             }
             else
             {
 
             }
+
+
+        }
+        else if (other.gameObject.tag == "FinishCizgisi")
+        {
+            _player.transform.localPosition = new Vector3(0, 1, 0);
+            GameController._oyunAktif = false;
+
+            StartCoroutine("FeatherYerlestirme", 1);
 
         }
         else
@@ -93,6 +111,36 @@ public class PlayerController : MonoBehaviour
     private void LoseScreenAc()
     {
         _uiController.LoseScreenPanelOpen();
+    }
+
+    private IEnumerator FeatherYerlestirme()
+    {
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>().FinishTakipObjesiBul();
+        yield return new WaitForSeconds(1f);
+        GameController._finishTakip = true;
+
+        for (int i = 0; i < _featherParent.transform.childCount; i++)
+        {
+            if (i == _featherParent.transform.childCount - 1)
+            {
+                GameController._finishTakip = false;
+                yield return new WaitForSeconds(0.2f);
+                _featherParent.transform.GetChild(_featherParent.transform.childCount - i - 1).gameObject.transform.DOMove(GameObject.FindGameObjectWithTag("FinishFeatherNoktalari").GetComponent<FinishFeatherNoktalari>()._finishFeatherNoktalari[i].transform.position, 1f);
+                _featherParent.transform.GetChild(_featherParent.transform.childCount - i - 1).gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                _featherParent.transform.GetChild(_featherParent.transform.childCount - i - 1).gameObject.transform.rotation = Quaternion.Euler(90f, 0, 0);
+                Invoke("WinScreenAc", 2f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.2f);
+                _featherParent.transform.GetChild(_featherParent.transform.childCount - i - 1).gameObject.transform.DOMove(GameObject.FindGameObjectWithTag("FinishFeatherNoktalari").GetComponent<FinishFeatherNoktalari>()._finishFeatherNoktalari[i].transform.position, 1f);
+                _featherParent.transform.GetChild(_featherParent.transform.childCount - i - 1).gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                _featherParent.transform.GetChild(_featherParent.transform.childCount - i - 1).gameObject.transform.rotation = Quaternion.Euler(90f, 0, 0);
+            }
+
+        }
+
+
     }
 
     private void FeatherSpawn()
@@ -121,9 +169,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void FeatherTemizle()
+    {
+        for (int i = 0; i < _featherParent.transform.childCount; i++)
+        {
+            Destroy(_featherParent.transform.GetChild(i).gameObject);
+
+        }
+    }
 
     public void LevelStart()
     {
+
+        FeatherTemizle();
         _toplananElmasSayisi = 1;
         _elmasSayisi = PlayerPrefs.GetInt("ElmasSayisi");
         _karakterPaketi.transform.position = new Vector3(0, 0, 0);
@@ -132,6 +190,7 @@ public class PlayerController : MonoBehaviour
         _player.transform.localPosition = new Vector3(0, 1, 0);
         _spawnPointNumber = 0;
         _arkaDuvar.SetActive(true);
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>().KameraResetle();
     }
 
 

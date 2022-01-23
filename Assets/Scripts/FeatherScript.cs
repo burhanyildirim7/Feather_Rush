@@ -14,6 +14,18 @@ public class FeatherScript : MonoBehaviour
         _material.material = _materials[0];
     }
 
+    private void Update()
+    {
+        if (transform.parent == null)
+        {
+            Destroy(gameObject, 2f);
+        }
+        else
+        {
+
+        }
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
