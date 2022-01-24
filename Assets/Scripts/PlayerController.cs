@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private GameObject _arkaDuvar;
 
+    [SerializeField] private ParticleSystem _featherParticle;
+
     private int _elmasSayisi;
 
     private GameObject _player;
@@ -64,6 +66,8 @@ public class PlayerController : MonoBehaviour
         {
             if (GameController._oyunAktif == true)
             {
+                _featherParticle.Play();
+
                 if (_featherParent.transform.childCount > 0)
                 {
                     _featherParent.transform.GetChild(_featherParent.transform.childCount - 1).parent = null;
@@ -125,6 +129,7 @@ public class PlayerController : MonoBehaviour
             {
                 GameController._finishTakip = false;
                 yield return new WaitForSeconds(0.2f);
+                _featherParent.transform.GetChild(_featherParent.transform.childCount - i - 1).gameObject.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
                 _featherParent.transform.GetChild(_featherParent.transform.childCount - i - 1).gameObject.transform.DOMove(GameObject.FindGameObjectWithTag("FinishFeatherNoktalari").GetComponent<FinishFeatherNoktalari>()._finishFeatherNoktalari[i].transform.position, 1f);
                 _featherParent.transform.GetChild(_featherParent.transform.childCount - i - 1).gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 _featherParent.transform.GetChild(_featherParent.transform.childCount - i - 1).gameObject.transform.rotation = Quaternion.Euler(90f, 0, 0);
@@ -133,6 +138,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 yield return new WaitForSeconds(0.2f);
+                _featherParent.transform.GetChild(_featherParent.transform.childCount - i - 1).gameObject.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
                 _featherParent.transform.GetChild(_featherParent.transform.childCount - i - 1).gameObject.transform.DOMove(GameObject.FindGameObjectWithTag("FinishFeatherNoktalari").GetComponent<FinishFeatherNoktalari>()._finishFeatherNoktalari[i].transform.position, 1f);
                 _featherParent.transform.GetChild(_featherParent.transform.childCount - i - 1).gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 _featherParent.transform.GetChild(_featherParent.transform.childCount - i - 1).gameObject.transform.rotation = Quaternion.Euler(90f, 0, 0);

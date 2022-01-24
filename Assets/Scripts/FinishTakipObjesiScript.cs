@@ -6,7 +6,7 @@ public class FinishTakipObjesiScript : MonoBehaviour
 {
     private void Start()
     {
-        transform.localPosition = new Vector3(0, 0, 0);
+        transform.localPosition = new Vector3(0.15f, 0, 0);
     }
 
     void Update()
