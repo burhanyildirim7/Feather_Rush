@@ -59,11 +59,17 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.tag == "FeatherCollectable")
         {
+            MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
+
             FeatherSpawn();
             Destroy(other.gameObject);
         }
         else if (other.gameObject.tag == "DegersizEsya")
         {
+
+            MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
+
+
             if (GameController._oyunAktif == true)
             {
                 _featherParticle.Play();
@@ -93,7 +99,50 @@ public class PlayerController : MonoBehaviour
             _player.transform.localPosition = new Vector3(0, 1, 0);
             GameController._oyunAktif = false;
 
+            int tuysayisi = _featherParent.transform.childCount;
+            int xdegeri = (int)(tuysayisi / 6);
+
+            int elmassayisi = tuysayisi * xdegeri;
+
+            _uiController.LevelSonuElmasSayisi(elmassayisi);
+
             StartCoroutine("FeatherYerlestirme", 1);
+
+        }
+        else if (other.gameObject.tag == "BlueDoor")
+        {
+
+            MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
+
+            //Debug.Log("Mavi Degdi");
+            //_material.material = _materials[1];
+
+        }
+        else if (other.gameObject.tag == "GreenDoor")
+        {
+
+            MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
+
+            //Debug.Log("Yesil Degdi");
+            //_material.material = _materials[2];
+
+        }
+        else if (other.gameObject.tag == "RedDoor")
+        {
+
+            MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
+
+            //Debug.Log("Kirmizi Degdi");
+            //_material.material = _materials[3];
+
+        }
+        else if (other.gameObject.tag == "YellowDoor")
+        {
+
+            MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
+
+            //Debug.Log("Sari Degdi");
+            //_material.material = _materials[4];
 
         }
         else
@@ -133,6 +182,7 @@ public class PlayerController : MonoBehaviour
                 _featherParent.transform.GetChild(_featherParent.transform.childCount - i - 1).gameObject.transform.DOMove(GameObject.FindGameObjectWithTag("FinishFeatherNoktalari").GetComponent<FinishFeatherNoktalari>()._finishFeatherNoktalari[i].transform.position, 1f);
                 _featherParent.transform.GetChild(_featherParent.transform.childCount - i - 1).gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 _featherParent.transform.GetChild(_featherParent.transform.childCount - i - 1).gameObject.transform.rotation = Quaternion.Euler(90f, 0, 0);
+                GameObject.FindGameObjectWithTag("FinishTakipObjesi").GetComponent<FinishTakipObjesiScript>().ConfettiPatlat();
                 Invoke("WinScreenAc", 2f);
             }
             else

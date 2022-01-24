@@ -33601,7 +33601,7 @@ GameObject:
   - component: {fileID: 576917666601733906}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: YellowDoor
+  m_TagString: RedDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
