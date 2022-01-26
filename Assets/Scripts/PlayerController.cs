@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
 
     private int _spawnPointNumber;
 
+    private int elmassayisi;
+
 
 
     void Start()
@@ -84,6 +86,7 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     GameController._oyunAktif = false;
+                    _uiController.LevelSonuElmasSayisi(0);
                     Invoke("LoseScreenAc", 1f);
                 }
             }
@@ -102,7 +105,7 @@ public class PlayerController : MonoBehaviour
             int tuysayisi = _featherParent.transform.childCount;
             int xdegeri = (int)(tuysayisi / 6);
 
-            int elmassayisi = tuysayisi * xdegeri;
+            elmassayisi = tuysayisi * xdegeri;
 
             _uiController.LevelSonuElmasSayisi(elmassayisi);
 
@@ -238,6 +241,7 @@ public class PlayerController : MonoBehaviour
     {
 
         FeatherTemizle();
+        elmassayisi = 0;
         _toplananElmasSayisi = 1;
         _elmasSayisi = PlayerPrefs.GetInt("ElmasSayisi");
         _karakterPaketi.transform.position = new Vector3(0, 0, 0);
